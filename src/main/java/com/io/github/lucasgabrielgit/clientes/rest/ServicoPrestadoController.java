@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +30,7 @@ public class ServicoPrestadoController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Servico salvar(@RequestBody ServicoDTO dto) {
+        LocalDate data = LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         Servico servico = new Servico();
         Integer idCliente = dto.getIdCliente();
 
@@ -36,7 +40,7 @@ public class ServicoPrestadoController {
                                 (HttpStatus.BAD_REQUEST, "Cliente inexistente")
                 );
         servico.setDescricao(dto.getDescricao());
-        servico.setData(new Date());
+        servico.setData(data);
         servico.setCliente(cliente);
         servico.setValor(bigDecimalConverter.converter(dto.getPreco()));
         return servicoRepository.save(servico);

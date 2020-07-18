@@ -32,6 +32,6 @@ public class Servico {
     @JsonFormat(shape = JsonFormat.Shape.STRING,
             pattern = "dd/MM/yyyy",
             timezone = "America/Brazil")
-    private Date data;
+    private LocalDate data;
 
 }
