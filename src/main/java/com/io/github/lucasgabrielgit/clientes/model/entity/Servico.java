@@ -30,12 +30,8 @@ public class Servico {
 
     @Column
     @JsonFormat(shape = JsonFormat.Shape.STRING,
-            pattern = "dd/MM/yyyy HH:mm",
+            pattern = "dd/MM/yyyy",
             timezone = "America/Brazil")
     private Date data;
 
-    @PrePersist
-    public void prePersist() {
-        setData(new Date());
-    }
 }
