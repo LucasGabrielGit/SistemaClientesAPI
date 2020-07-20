@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//API que trata as exceções e retorna a resposta como lista de erros
 @RestControllerAdvice
 public class ApplicationControllerAdvice {
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -28,6 +29,8 @@ public class ApplicationControllerAdvice {
         return new APIErrors(messages);
     }
 
+    
+    //Trata as exceções e retorna uma lista de erros junto com o Código de Status das ações tomadas no servidor
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity handleResponseStatusException(ResponseStatusException ex) {
         String msgErro = ex.getMessage();
