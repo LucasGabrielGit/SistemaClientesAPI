@@ -13,5 +13,5 @@ public interface ServicoRepository extends JpaRepository<Servico, Integer> {
             "c where upper(c.nome) like upper(:nome)" +
             "and MONTH(s.data) =:mes")
     List<Servico> findByNomeClienteAndMes(@Param("nome") String nome
-            , @Param("mes") String mes);
+            , @Param("mes") Integer mes);
 }
